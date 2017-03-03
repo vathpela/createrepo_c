@@ -387,6 +387,9 @@ cr_copy_file(const char *src, const char *in_dst, GError **err)
     else
         dst = g_strdup(in_dst);
 
+    if (!strcmp(src, dst))
+	return TRUE;
+
     // Open src file
     if ((orig = fopen(src, "rb")) == NULL) {
         g_debug("%s: Cannot open source file %s (%s)", __func__, src,
